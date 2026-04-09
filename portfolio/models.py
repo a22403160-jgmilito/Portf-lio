@@ -47,14 +47,13 @@ class Competencia(models.Model):
 class Projeto(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
-    imagem = models.ImageField(upload_to='projetos/')
-    video_demo = models.URLField()
-    github_link = models.URLField()
-
+    imagem = models.ImageField(upload_to='projetos/', null=True, blank=True)
+    video_demo = models.URLField(null=True, blank=True)
+    github_link = models.URLField(null=True, blank=True)
     unidade_curricular = models.ForeignKey(UnidadeCurricular, on_delete=models.CASCADE)
 
-    tecnologias = models.ManyToManyField(Tecnologia)
-    competencias = models.ManyToManyField(Competencia)
+    tecnologias = models.ManyToManyField(Tecnologia, blank=True)
+    competencias = models.ManyToManyField(Competencia, blank=True)
 
     def __str__(self):
         return self.nome
@@ -63,7 +62,7 @@ class Docente(models.Model):
     nome = models.CharField(max_length=100)
     email = models.EmailField()
     pagina_lusofona = models.URLField()
-    foto = models.ImageField(upload_to='docentes/')
+    foto = models.ImageField(upload_to='docentes/', blank=True)
 
     def __str__(self):
         return self.nome
@@ -112,7 +111,7 @@ class TFC(models.Model):
 class MakingOf(models.Model):
     descricao = models.TextField()
     data = models.DateField()
-    imagem = models.ImageField(upload_to='makingof/')
+    imagem = models.ImageField(upload_to='makingof/', blank=True)
     decisao = models.TextField()
     erro = models.TextField()
     correcao = models.TextField()

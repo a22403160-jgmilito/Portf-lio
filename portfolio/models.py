@@ -13,13 +13,14 @@ class Licenciatura(models.Model):
 
 class UnidadeCurricular(models.Model):
     nome = models.CharField(max_length=100)
-    descricao = models.TextField()
-    ano = models.IntegerField()
-    semestre = models.IntegerField()
-    imagem = models.ImageField(upload_to='ucs/')
-
+    codigo = models.CharField(max_length=50)  # NOVO
+    descricao = models.TextField(blank=True)
+    ano = models.IntegerField()  # ano curricular
+    semestre = models.CharField(max_length=20)  # "Semestral"
+    ects = models.FloatField()  # NOVO
+    imagem = models.ImageField(upload_to='ucs/', blank=True, null=True)
     licenciatura = models.ForeignKey(Licenciatura, on_delete=models.CASCADE)
-    docentes = models.ManyToManyField("Docente")
+    docentes = models.ManyToManyField("Docente", blank=True)
 
     def __str__(self):
         return self.nome

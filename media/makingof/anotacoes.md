@@ -188,6 +188,21 @@ Estes erros foram analisados e corrigidos, levando à melhoria da modelação.
 Foi também implementada uma relação ManyToMany entre TFC e Tecnologias, 
 permitindo representar corretamente as tecnologias usadas em cada projeto.
 
+Eu quando fiz o commit para o repositorio no GitHub, em relacao a parte da importacao do JSON para a base de dados,
+eu acabei so copiando e colando os comandos que o professor disponibilizou, e o a mensagem ficou sem significado, ficou a que o professor disse,
+"mensagem que descreve o que fez", mas a mensagem que queria usar era "Importacao de TFCs via JSON e integracao com base de dados", fui fazer no automatico 
+e me equivoquei, falta de atencao.
+
+
+Em relacao ao carregamento de dados de Curso e Unidades Curriculares:
+Após analisar os dados da API da Lusófona, verifiquei que existiam atributos relevantes nas unidades curriculares que não estavam presentes na modelação inicial, como o código da UC, os ECTS e o ano curricular.
+
+Decidi adicionar esses atributos ao modelo UnidadeCurricular, de forma a representar melhor a estrutura real do curso e enriquecer a informação disponível na aplicação.
+
+Foi desenvolvido um script para importar automaticamente dados das unidades curriculares a partir da API da Universidade Lusófona.
+Isto permitiu garantir dados reais e atualizados, evitando inserção manual e aumentando a consistência da informação.
+Foi utilizada a função get_or_create para evitar duplicação de dados.
+
 EVOLUÇÃO DO MODELO:
 
 Versão 1:

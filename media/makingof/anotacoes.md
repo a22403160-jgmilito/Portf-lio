@@ -174,6 +174,20 @@ e as vezes por String, pois em py se le de cima para baixo, logo se eu usasse um
 iria dar erro, NameError: name 'xxxxx' is not defined, onde o "xxxxx" seria o nome da classe que estava chamando,
 esse erro da normalmente quando estou fazendo as ligações entre classes, usando ForeignKey e ManyToManyField.
 
+Em relacao a parte do JSON:
+Usei ano como CharField, porque o meu JSON usa valores como "2024-2025" e não um inteiro simples.
+Usei palavras_chave e areas como TextField, porque no JSON elas vêm como listas, e é mais simples guardar como texto separado por vírgulas do que criar novas entidades só para isso.
+
+Foi desenvolvido um script em Python (loader.py) que lê um ficheiro JSON contendo os TFCs extraídos por web scraping.
+Utilizando o ORM do Django, os dados foram inseridos na base de dados de forma estruturada.
+Durante o processo surgiram alguns erros:
+- Caminho incorreto do ficheiro JSON (FileNotFoundError)
+- Tipo de dados errados no campo "ano"
+
+Estes erros foram analisados e corrigidos, levando à melhoria da modelação.
+Foi também implementada uma relação ManyToMany entre TFC e Tecnologias, 
+permitindo representar corretamente as tecnologias usadas em cada projeto.
+
 EVOLUÇÃO DO MODELO:
 
 Versão 1:

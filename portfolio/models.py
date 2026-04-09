@@ -28,7 +28,7 @@ class Tecnologia(models.Model):
     nome = models.CharField(max_length=100)
     tipo = models.CharField(max_length=50)
     descricao = models.TextField()
-    logotipo = models.ImageField(upload_to='tecnologias/')
+    logotipo = models.ImageField(upload_to='tecnologias/', blank=True, null=True)
     site_oficial = models.URLField()
     nivel_interesse = models.IntegerField()
 
@@ -94,15 +94,20 @@ class ExperienciaProfissional(models.Model):
 
 class TFC(models.Model):
     titulo = models.CharField(max_length=200)
-    descricao = models.TextField()
-    ano = models.IntegerField()
-    classificacao = models.FloatField()
+    ano = models.CharField(max_length=20)
+    licenciatura = models.CharField(max_length=150, blank=True)
+    sumario = models.TextField(blank=True)
+    link_pdf = models.URLField(blank=True, null=True)
+    imagem = models.URLField(blank=True, null=True)
+    palavras_chave = models.TextField(blank=True)
+    areas = models.TextField(blank=True)
+    rating = models.IntegerField(default=0)
 
-    tecnologias = models.ManyToManyField(Tecnologia)
+    tecnologias = models.ManyToManyField(Tecnologia, blank=True)
 
     def __str__(self):
         return self.titulo
-
+    
 class MakingOf(models.Model):
     descricao = models.TextField()
     data = models.DateField()

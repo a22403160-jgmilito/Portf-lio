@@ -193,7 +193,6 @@ eu acabei so copiando e colando os comandos que o professor disponibilizou, e o 
 "mensagem que descreve o que fez", mas a mensagem que queria usar era "Importacao de TFCs via JSON e integracao com base de dados", fui fazer no automatico 
 e me equivoquei, falta de atencao.
 
-
 Em relacao ao carregamento de dados de Curso e Unidades Curriculares:
 Após analisar os dados da API da Lusófona, verifiquei que existiam atributos relevantes nas unidades curriculares que não estavam presentes na modelação inicial, como o código da UC, os ECTS e o ano curricular.
 
@@ -340,3 +339,11 @@ class MakingOf(models.Model):
     projeto = models.ForeignKey(Projeto, on_delete=models.CASCADE, null=True, blank=True)
     tecnologia = models.ForeignKey(Tecnologia, on_delete=models.CASCADE, null=True, blank=True)
     unidade_curricular = models.ForeignKey(UnidadeCurricular, on_delete=models.CASCADE, null=True, blank=True)
+
+Ultimos apontamentos:
+
+Apos evolucoes do projeto e analise de infomarcoes, foram necessarias algumas alteracoes 
+na parte dos modelos Django, e possivelmente ira se alterar ao decorrer dos anos tambem. 
+Ainda sao necessarios criar novas componetes, projetos, entre outros atributos na parte do site, pois nao tenho todos
+os links ou videos dos meus projetos, mas isso sao coisas que iram se evoluindo e se construindo ao decorrer dos semestres
+e anos.

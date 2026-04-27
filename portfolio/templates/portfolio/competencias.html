@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'escola/styles.css' %}">
+
+<h2>Competências</h2>
+
+<a href="{% url 'nova_competencia' %}">
+    <button>Nova Competência</button>
+</a>
+
+<ul>
+    {% for c in competencias %}
+        <li>
+            {{ c.nome }} ({{ c.nivel }})
+
+            <a href="{% url 'edita_competencia' c.id %}">Editar</a>
+            <a href="{% url 'apaga_competencia' c.id %}">Apagar</a>
+        </li>
+    {% endfor %}
+</ul>

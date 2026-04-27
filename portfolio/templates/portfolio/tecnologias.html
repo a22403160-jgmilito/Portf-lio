@@ -1,0 +1,18 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'escola/styles.css' %}">
+
+<h2>Tecnologias</h2>
+
+<a href="{% url 'nova_tecnologia' %}">
+    <button>Nova Tecnologia</button>
+</a>
+
+<ul>
+    {% for t in tecnologias %}
+        <li>
+            {{ t.nome }}
+            <a href="{% url 'edita_tecnologia' t.id %}">Editar</a>
+            <a href="{% url 'apaga_tecnologia' t.id %}">Apagar</a>
+        </li>
+    {% endfor %}
+</ul>

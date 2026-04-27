@@ -1,0 +1,10 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'escola/styles.css' %}">
+
+<h2>Editar Competência</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>

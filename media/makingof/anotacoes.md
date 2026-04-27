@@ -350,3 +350,10 @@ e anos.
 
 Optei por reutilizar o ficheiro CSS da aplicação “escola” no “portfolio”, garantindo consistência visual e evitando duplicação de código. 
 Esta abordagem permite uma manutenção mais simples e uma identidade visual uniforme em toda a aplicação.
+
+Após implementar o CRUD para a entidade Projeto, reutilizei o mesmo padrão para Tecnologia, Competência e Formação, 
+o que demonstrou a consistência e reutilização de código proporcionada pelo Django através de ModelForms e views estruturadas.
+
+Durante a implementação do CRUD, surgiram erros relacionados com templates, especialmente nas parte da edição. Este problema ocorreu porque as views estavam corretamente definidas, mas os ficheiros HTML correspondentes não tinham sido criados.
+Depois que criei todos, tudo funcionou corretamente
+

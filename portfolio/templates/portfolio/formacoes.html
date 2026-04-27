@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'escola/styles.css' %}">
+
+<h2>Formações</h2>
+
+<a href="{% url 'nova_formacao' %}">
+    <button>Nova Formação</button>
+</a>
+
+<ul>
+    {% for f in formacoes %}
+        <li>
+            {{ f.nome }} - {{ f.instituicao }}
+
+            <a href="{% url 'edita_formacao' f.id %}">Editar</a>
+            <a href="{% url 'apaga_formacao' f.id %}">Apagar</a>
+        </li>
+    {% endfor %}
+</ul>

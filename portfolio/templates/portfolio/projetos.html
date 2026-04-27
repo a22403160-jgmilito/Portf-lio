@@ -1,0 +1,20 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'escola/styles.css' %}">
+
+<h2>Projetos</h2>
+
+<a href="{% url 'novo_projeto' %}">
+    <button>Novo Projeto</button>
+</a>
+
+<ul>
+    {% for projeto in projetos %}
+        <li>
+            {{ projeto.nome }}
+
+            <a href="{% url 'edita_projeto' projeto.id %}">Editar</a>
+            <a href="{% url 'apaga_projeto' projeto.id %}">Apagar</a>
+        </li>
+    {% endfor %}
+</ul>

@@ -347,3 +347,6 @@ na parte dos modelos Django, e possivelmente ira se alterar ao decorrer dos anos
 Ainda sao necessarios criar novas componetes, projetos, entre outros atributos na parte do site, pois nao tenho todos
 os links ou videos dos meus projetos, mas isso sao coisas que iram se evoluindo e se construindo ao decorrer dos semestres
 e anos.
+
+Optei por reutilizar o ficheiro CSS da aplicação “escola” no “portfolio”, garantindo consistência visual e evitando duplicação de código. 
+Esta abordagem permite uma manutenção mais simples e uma identidade visual uniforme em toda a aplicação.

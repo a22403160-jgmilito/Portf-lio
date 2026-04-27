@@ -24,7 +24,7 @@ class UnidadeCurricular(models.Model):
 
     def __str__(self):
         return self.nome
-
+    
 class Tecnologia(models.Model):
     nome = models.CharField(max_length=100)
     tipo = models.CharField(max_length=50)
@@ -32,6 +32,7 @@ class Tecnologia(models.Model):
     logotipo = models.ImageField(upload_to='tecnologias/', blank=True, null=True)
     site_oficial = models.URLField()
     nivel_interesse = models.IntegerField()
+    
 
     def __str__(self):
         return self.nome
@@ -122,3 +123,4 @@ class MakingOf(models.Model):
 
     def __str__(self):
         return self.descricao[:50]
+    

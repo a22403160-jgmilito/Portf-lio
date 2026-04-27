@@ -119,3 +119,7 @@ def apaga_formacao_view(request, formacao_id):
     formacao = get_object_or_404(Formacao, id=formacao_id)
     formacao.delete()
     return redirect('formacoes')
+
+def sobre_view(request):
+    tecnologias = Tecnologia.objects.all()
+    return render(request, 'portfolio/sobre.html', {'tecnologias': tecnologias})

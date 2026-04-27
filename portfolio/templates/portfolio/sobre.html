@@ -1,0 +1,123 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'escola/styles.css' %}">
+
+<main>
+
+<h2>Sobre esta Aplicação</h2>
+
+<!-- 1. ARQUITETURA -->
+<section>
+    <h3>1. Arquitetura MVT do Django</h3>
+
+    <p>
+        A aplicação foi desenvolvida com base na arquitetura MVT (Model-View-Template).
+    </p>
+
+    <h4>Componentes:</h4>
+    <ul>
+        <li><b>Model:</b> responsável pelos dados e pela base de dados.</li>
+        <li><b>View:</b> responsável pela lógica da aplicação.</li>
+        <li><b>Template:</b> responsável pela interface gráfica.</li>
+    </ul>
+
+    <h4>Fluxo de informação:</h4>
+    <p>
+        O utilizador faz um pedido → a View processa → consulta o Model → envia os dados para o Template → o Template apresenta ao utilizador.
+    </p>
+
+    <p><b>Diagrama MVT:</b></p>
+    <img src="/media/makingof/mvt.png" width="400">
+
+    <h4>Vídeo explicativo:</h4>
+    <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/SEU_VIDEO_AQUI"
+    frameborder="0" allowfullscreen>
+    </iframe>
+</section>
+
+
+<!-- 2. MODELAÇÃO -->
+<section>
+    <h3>2. Modelação</h3>
+
+    <p>O sistema foi modelado com base num Diagrama Entidade-Relação.</p>
+
+    <img src="/media/makingof/der_v1.png" width="400">
+
+    <h4>Exemplo de models.py:</h4>
+    <pre>
+class Projeto(models.Model):
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField()
+    unidade_curricular = models.ForeignKey(UnidadeCurricular, on_delete=models.CASCADE)
+    tecnologias = models.ManyToManyField(Tecnologia)
+    competencias = models.ManyToManyField(Competencia)
+    </pre>
+</section>
+
+
+<!-- 3. TECNOLOGIAS -->
+<section>
+    <h3>3. Tecnologias</h3>
+
+    <ul>
+        {% for t in tecnologias %}
+            <li>
+                <b>{{ t.nome }}</b> ({{ t.tipo.nome }}) <br>
+                {{ t.descricao }}
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+
+
+<!-- 4. ESTRUTURA -->
+<section>
+    <h3>4. Estrutura das Páginas</h3>
+
+    <p>Mapa de navegação da aplicação:</p>
+    <img src="/media/makingof/mapa.png" width="400">
+
+    <p>
+        A aplicação possui uma estrutura baseada em CRUD para várias entidades,
+        permitindo criar, editar, visualizar e apagar dados de forma consistente.
+    </p>
+</section>
+
+
+<!-- 5. GITHUB -->
+<section>
+    <h3>5. Repositório GitHub</h3>
+
+    <a href="https://github.com/a22403160-jgmilito/Portf-lio" target="_blank">
+        Ir para o repositório
+    </a>
+
+    <p>
+        O GitHub foi utilizado para controlo de versões, permitindo acompanhar alterações no código,
+        garantir backup e facilitar o desenvolvimento contínuo da aplicação.
+    </p>
+</section>
+
+
+<!-- 6. MAKING OF -->
+<section>
+    <h3>6. Making Of</h3>
+
+    <p>
+        Durante o desenvolvimento desta aplicação, surgiram várias dificuldades e aprendizagens importantes.
+    </p>
+
+    <ul>
+        <li>Erros com templates inexistentes (TemplateDoesNotExist)</li>
+        <li>Problemas na organização de URLs entre projeto e apps</li>
+        <li>Compreensão da arquitetura MVT</li>
+        <li>Implementação do CRUD com ModelForms</li>
+    </ul>
+
+    <p>
+        O projeto evoluiu progressivamente, sendo melhorado a cada etapa, permitindo consolidar conhecimentos em Django.
+    </p>
+</section>
+
+</main>

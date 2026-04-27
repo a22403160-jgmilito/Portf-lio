@@ -1,4 +1,5 @@
 {% load static %}
+{% load markdownify %}
 <link rel="stylesheet" href="{% static 'escola/styles.css' %}">
 
 <main>
@@ -104,20 +105,9 @@ class Projeto(models.Model):
 <section>
     <h3>6. Making Of</h3>
 
-    <p>
-        Durante o desenvolvimento desta aplicação, surgiram várias dificuldades e aprendizagens importantes.
-    </p>
-
-    <ul>
-        <li>Erros com templates inexistentes (TemplateDoesNotExist)</li>
-        <li>Problemas na organização de URLs entre projeto e apps</li>
-        <li>Compreensão da arquitetura MVT</li>
-        <li>Implementação do CRUD com ModelForms</li>
-    </ul>
-
-    <p>
-        O projeto evoluiu progressivamente, sendo melhorado a cada etapa, permitindo consolidar conhecimentos em Django.
-    </p>
+    <div>
+        {{ texto_markdown|markdownify }}
+    </div>
 </section>
 
 </main>

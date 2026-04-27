@@ -121,5 +121,29 @@ def apaga_formacao_view(request, formacao_id):
     return redirect('formacoes')
 
 def sobre_view(request):
+    from portfolio.models import Tecnologia
+
     tecnologias = Tecnologia.objects.all()
-    return render(request, 'portfolio/sobre.html', {'tecnologias': tecnologias})
+
+    texto_markdown = """
+## Problemas encontrados
+- TemplateDoesNotExist
+- Erros de migrations
+- Problemas com ForeignKey
+
+## Aprendizagens
+- Compreensão do MVT
+- Uso de migrations
+- Importação de dados JSON
+
+## Tecnologias usadas
+- Django
+- HTML
+- CSS
+- GitHub
+"""
+
+    return render(request, 'portfolio/sobre.html', {
+        'tecnologias': tecnologias,
+        'texto_markdown': texto_markdown,
+    })

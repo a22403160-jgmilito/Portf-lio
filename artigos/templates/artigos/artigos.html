@@ -1,0 +1,74 @@
+<h1>Artigos</h1>
+
+{% if is_autor %}
+    <a href="{% url 'novo_artigo' %}">
+        Novo Artigo
+    </a>
+{% endif %}
+
+<hr>
+
+{% for artigo in artigos %}
+
+    <h2>{{ artigo.titulo }}</h2>
+
+    <p>{{ artigo.texto }}</p>
+
+    <p>
+        Autor:
+        {{ artigo.autor.username }}
+    </p>
+
+    <p>
+        Likes:
+        {{ artigo.total_likes }}
+    </p>
+
+    <a href="{% url 'like_artigo' artigo.id %}">
+        Gostar
+    </a>
+
+    {% if request.user == artigo.autor %}
+        <a href="{% url 'edita_artigo' artigo.id %}">
+            Editar
+        </a>
+    {% endif %}
+
+    <hr>
+
+    <h3>Comentários</h3>
+
+    {% for comentario in artigo.comentarios.all %}
+
+        <p>
+            <b>{{ comentario.autor.username }}</b>
+        </p>
+
+        <p>{{ comentario.texto }}</p>
+
+    {% empty %}
+
+        <p>Sem comentários.</p>
+
+    {% endfor %}
+
+    {% if request.user.is_authenticated %}
+
+        <form method="POST"
+              action="{% url 'comentario' artigo.id %}">
+
+            {% csrf_token %}
+
+            {{ comentario_form.as_p }}
+
+            <button type="submit">
+                Comentar
+            </button>
+
+        </form>
+
+    {% endif %}
+
+    <hr>
+
+{% endfor %}

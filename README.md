@@ -14,3 +14,9 @@ Projeto desenvolvido no âmbito da unidade curricular Programacao Web, com o obj
 Credenciais:
 - Username: admin
 - Password: JG123456
+
+- Username: pw25profs
+- Password: prof12345
+
+- Username: Pedrinho123
+- Password: jgrmss0205

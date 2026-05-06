@@ -1,13 +1,26 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Projeto, Tecnologia, Competencia, Formacao
 from .forms import ProjetoForm, TecnologiaForm, CompetenciaForm, FormacaoForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
 
+def gestor_portfolio(user):
+    return user.is_authenticated and user.groups.filter(
+        name='gestor-portfolio'
+    ).exists()
+
 def projetos_view(request):
     projetos = Projeto.objects.all()
-    return render(request, 'portfolio/projetos.html', {'projetos': projetos})
 
+    return render(request, 'portfolio/projetos.html', {
+        'projetos': projetos,
+        'is_gestor': gestor_portfolio(request.user)
+    })
+
+@login_required
+@user_passes_test(gestor_portfolio)
 def novo_projeto_view(request):
     form = ProjetoForm(request.POST or None, request.FILES)
 
@@ -17,6 +30,8 @@ def novo_projeto_view(request):
 
     return render(request, 'portfolio/novo_projeto.html', {'form': form})
 
+@login_required
+@user_passes_test(gestor_portfolio)
 def edita_projeto_view(request, projeto_id):
     projeto = get_object_or_404(Projeto, id=projeto_id)
 
@@ -28,6 +43,8 @@ def edita_projeto_view(request, projeto_id):
 
     return render(request, 'portfolio/edita_projeto.html', {'form': form, 'projeto': projeto})
 
+@login_required
+@user_passes_test(gestor_portfolio)
 def apaga_projeto_view(request, projeto_id):
     projeto = get_object_or_404(Projeto, id=projeto_id)
     projeto.delete()
@@ -35,9 +52,13 @@ def apaga_projeto_view(request, projeto_id):
 
 def tecnologias_view(request):
     tecnologias = Tecnologia.objects.all()
-    return render(request, 'portfolio/tecnologias.html', {'tecnologias': tecnologias})
+    return render(request, 'portfolio/tecnologias.html', {
+    'tecnologias': tecnologias,
+    'is_gestor': gestor_portfolio(request.user)
+    })
 
-
+@login_required
+@user_passes_test(gestor_portfolio)
 def nova_tecnologia_view(request):
     form = TecnologiaForm(request.POST or None, request.FILES)
     if form.is_valid():
@@ -45,7 +66,8 @@ def nova_tecnologia_view(request):
         return redirect('tecnologias')
     return render(request, 'portfolio/nova_tecnologia.html', {'form': form})
 
-
+@login_required
+@user_passes_test(gestor_portfolio)
 def edita_tecnologia_view(request, tecnologia_id):
     tecnologia = get_object_or_404(Tecnologia, id=tecnologia_id)
     form = TecnologiaForm(request.POST or None, request.FILES, instance=tecnologia)
@@ -56,7 +78,8 @@ def edita_tecnologia_view(request, tecnologia_id):
 
     return render(request, 'portfolio/edita_tecnologia.html', {'form': form})
 
-
+@login_required
+@user_passes_test(gestor_portfolio)
 def apaga_tecnologia_view(request, tecnologia_id):
     tecnologia = get_object_or_404(Tecnologia, id=tecnologia_id)
     tecnologia.delete()
@@ -64,9 +87,13 @@ def apaga_tecnologia_view(request, tecnologia_id):
 
 def competencias_view(request):
     competencias = Competencia.objects.all()
-    return render(request, 'portfolio/competencias.html', {'competencias': competencias})
+    return render(request, 'portfolio/competencias.html', {
+    'competencias': competencias,
+    'is_gestor': gestor_portfolio(request.user)
+    })
 
-
+@login_required
+@user_passes_test(gestor_portfolio)
 def nova_competencia_view(request):
     form = CompetenciaForm(request.POST or None)
     if form.is_valid():
@@ -74,7 +101,8 @@ def nova_competencia_view(request):
         return redirect('competencias')
     return render(request, 'portfolio/nova_competencia.html', {'form': form})
 
-
+@login_required
+@user_passes_test(gestor_portfolio)
 def edita_competencia_view(request, competencia_id):
     competencia = get_object_or_404(Competencia, id=competencia_id)
     form = CompetenciaForm(request.POST or None, instance=competencia)
@@ -85,7 +113,8 @@ def edita_competencia_view(request, competencia_id):
 
     return render(request, 'portfolio/edita_competencia.html', {'form': form})
 
-
+@login_required
+@user_passes_test(gestor_portfolio)
 def apaga_competencia_view(request, competencia_id):
     competencia = get_object_or_404(Competencia, id=competencia_id)
     competencia.delete()
@@ -93,9 +122,13 @@ def apaga_competencia_view(request, competencia_id):
 
 def formacoes_view(request):
     formacoes = Formacao.objects.all()
-    return render(request, 'portfolio/formacoes.html', {'formacoes': formacoes})
+    return render(request, 'portfolio/formacoes.html', {
+    'formacoes': formacoes,
+    'is_gestor': gestor_portfolio(request.user)
+    })
 
-
+@login_required
+@user_passes_test(gestor_portfolio)
 def nova_formacao_view(request):
     form = FormacaoForm(request.POST or None)
     if form.is_valid():
@@ -103,7 +136,8 @@ def nova_formacao_view(request):
         return redirect('formacoes')
     return render(request, 'portfolio/nova_formacao.html', {'form': form})
 
-
+@login_required
+@user_passes_test(gestor_portfolio)
 def edita_formacao_view(request, formacao_id):
     formacao = get_object_or_404(Formacao, id=formacao_id)
     form = FormacaoForm(request.POST or None, instance=formacao)
@@ -114,7 +148,8 @@ def edita_formacao_view(request, formacao_id):
 
     return render(request, 'portfolio/edita_formacao.html', {'form': form})
 
-
+@login_required
+@user_passes_test(gestor_portfolio)
 def apaga_formacao_view(request, formacao_id):
     formacao = get_object_or_404(Formacao, id=formacao_id)
     formacao.delete()

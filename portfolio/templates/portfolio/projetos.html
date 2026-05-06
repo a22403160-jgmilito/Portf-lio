@@ -4,17 +4,26 @@
 
 <h2>Projetos</h2>
 
-<a href="{% url 'novo_projeto' %}">
-    <button>Novo Projeto</button>
-</a>
+{% if is_gestor %}
+    <a href="{% url 'novo_projeto' %}">
+        <button>Novo Projeto</button>
+    </a>
+{% endif %}
 
 <ul>
     {% for projeto in projetos %}
         <li>
             {{ projeto.nome }}
 
-            <a href="{% url 'edita_projeto' projeto.id %}">Editar</a>
-            <a href="{% url 'apaga_projeto' projeto.id %}">Apagar</a>
+            {% if is_gestor %}
+                <a href="{% url 'edita_projeto' projeto.id %}">
+                    Editar
+                </a>
+
+                <a href="{% url 'apaga_projeto' projeto.id %}">
+                    Apagar
+                </a>
+            {% endif %}
         </li>
     {% endfor %}
 </ul>

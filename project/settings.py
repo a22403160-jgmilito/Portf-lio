@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "artigos",
     'cloudinary',
     'cloudinary_storage',
+    'filmes',
 ]
 
 MIDDLEWARE = [
@@ -171,3 +172,11 @@ CLOUDINARY_STORAGE = {
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')

@@ -357,3 +357,11 @@ o que demonstrou a consistência e reutilização de código proporcionada pelo 
 Durante a implementação do CRUD, surgiram erros relacionados com templates, especialmente nas parte da edição. Este problema ocorreu porque as views estavam corretamente definidas, mas os ficheiros HTML correspondentes não tinham sido criados.
 Depois que criei todos, tudo funcionou corretamente
 
+A API RESTful escolhida será uma API de gestão de filmes. O objetivo é permitir criar, consultar, atualizar e apagar informações sobre filmes, realizadores, géneros e atores.
+
+Cada filme pertence a um realizador, criando uma relação 1:N, pois um realizador pode realizar vários filmes, mas cada filme tem apenas um realizador principal.
+
+A API também inclui uma relação N:N entre filmes e atores, uma vez que um filme pode ter vários atores e um ator pode participar em vários filmes. Para representar esta relação, foi criada a entidade intermédia Filme_Ator, que também guarda o nome da personagem interpretada.
+
+Além disso, os filmes podem estar associados a vários géneros, como ação, comédia ou drama.
+

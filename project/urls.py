@@ -19,13 +19,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from filmes.api import api
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/", api.urls),
     path("escola/", include("escola.urls")), 
     path("", include("escola.urls")),  #  rota para app escola sem precisar de escrever "escola"
     path("portfolio/", include("portfolio.urls")),
     path("accounts/", include("accounts.urls")),
     path("artigos/", include("artigos.urls")),
+    
 ]
 
